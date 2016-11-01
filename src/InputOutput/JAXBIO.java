@@ -9,10 +9,8 @@ package InputOutput;
 
 import Classes.Hospital;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.*;
+import javax.xml.namespace.QName;
 import java.io.File;
 
 public class JAXBIO{
@@ -30,7 +28,8 @@ public class JAXBIO{
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(hospital, file);
+            jaxbMarshaller.marshal(new JAXBElement<Hospital>(new QName("uri","local"), Hospital.class, h), file);
+            //jaxbMarshaller.marshal(hospital, file);
             //jaxbMarshaller.marshal(Hospital, System.out);
 
         } catch (JAXBException e) {

@@ -1,8 +1,6 @@
 package InputOutput;
 
 import Classes.Hospital;
-
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
@@ -15,7 +13,6 @@ import java.io.IOException;
  **/
 public class JSonIO{
 
-    @Override
     public void toFile(Hospital hosp, String fileName) {
         Hospital hospital = new Hospital(hosp);
         ObjectMapper mapper = new ObjectMapper();
@@ -29,7 +26,6 @@ public class JSonIO{
         }
     }
 
-    @Override
     public Classes.Hospital fromFile(String fileName) {
 
         ObjectMapper mapper = new ObjectMapper();
