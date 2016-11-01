@@ -1,0 +1,12 @@
+Simpson Roman, 11-09-1997, Male, Bosh Str. 1/44: 100, 20-09-2016, Cleaner
+Con Roman, 21-11-1996, Male, Industrial Str., 123/4: 250, 22-10-2016, Mental_Health_Worker
+Morgan Freeman, 14-12-1967, Male, Kingdom Str., 1111/44: 110, 20-09-2016, Cleaner
+Torrent Roman, 11-02-1994, Male, Det Str. 1/44: 260, 22-09-2016, Dietitian
+Morgan Freeman, 14-12-1967, Male, Kingdom Str., 151/44: 110, 20-09-2016, Cleaner
+Torrent Roman, 11-02-1994, Male, Det Str. 1/44: 260, 22-09-2016, Dietitian
+Kenny Harry, 05-07-1989, Male, Finger Str. 55/1: 424, 20-09-2016, Administrator
+Jo Rita, 23-07-1979, Female, Independence Str. 31/34: 115, 21-11-2016, Medical_Technician
+Pulse Ken, 14-02-1991, Male, Industrial Str. 13/4: 300, 21-09-2016, Physician
+Tera Anna, 16-07-1987, Female, Kingdom Str. 1111/44: 177, 20-09-2016, Nurse
+Olden Roman, 01-09-1997, Male, Destruct Str. 1/44: 221, 20-09-2016, Dietitian
+Kep Molly, 01-01-1989, Female, Finger Str. 15/11: 300, 20-09-2016, Administrator
