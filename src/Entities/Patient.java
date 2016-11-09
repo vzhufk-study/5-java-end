@@ -1,5 +1,6 @@
-package Classes;
+package Entities;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.text.ParseException;
 import java.util.*;
 
@@ -7,9 +8,14 @@ import java.util.*;
  * Created by zhufy on 14.09.2016.
  */
 
-class Patient extends Person {
+public class Patient extends Person {
 
     private List<Diagnosis> diagnosis;
+
+    public Patient() throws ParseException {
+        super();
+        diagnosis = new LinkedList<>();
+    }
 
     public Patient(String name, Date dateOfBirth, Gender sex, String address, List<Diagnosis> diagnosis) {
         super(name, dateOfBirth, sex, address);
@@ -26,13 +32,13 @@ class Patient extends Person {
         this.diagnosis.add(diagnosis);
     }
 
-    //Get Classes.Diagnosis in some date range
+    //Get Entities.Diagnosis in some date range
     public List<Diagnosis> getDiagnosis(GregorianCalendar startDate, GregorianCalendar finishDate){
         List<Diagnosis> result = new LinkedList<Diagnosis>();
         GregorianCalendar currentDiagnosisDate;
         for (Iterator<Diagnosis> i = diagnosis.listIterator(); i.hasNext(); ){
             Diagnosis currentDiagnos = i.next();
-            currentDiagnosisDate = currentDiagnos.getDate();
+            currentDiagnosisDate = currentDiagnos.getDateOfDiagnosis();
             if (startDate.after(currentDiagnosisDate) || finishDate.after(currentDiagnosisDate)){
                 result.add(currentDiagnos);
             }
@@ -40,16 +46,16 @@ class Patient extends Person {
         return result;
     }
 
-    //Get Classes.Diagnosis after some date
+    //Get Entities.Diagnosis after some date
     public List<Diagnosis> getDiagnosisAfterBefore(GregorianCalendar startDate){
         return getDiagnosis(startDate, new GregorianCalendar());
     }
-
+    @XmlElement
     public List<Diagnosis> getDiagnosis() {
         return diagnosis;
     }
 
-    //Get Classes.Diagnosis before some date
+    //Get Entities.Diagnosis before some date
     public List<Diagnosis> getDiagnosisAfter(GregorianCalendar finishDate){
         return getDiagnosis(new GregorianCalendar(), finishDate);
     }

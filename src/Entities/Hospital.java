@@ -1,8 +1,9 @@
-package Classes;
+package Entities;
 
 import Exceptions.StaffPostException;
 
-import java.io.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.Collator;
 import java.text.ParseException;
 import java.util.*;
@@ -11,10 +12,17 @@ import java.util.*;
  * Created by zhufy on 14.09.2016.
  */
 
+@XmlRootElement
 public class Hospital {
     private String name;
     private List<Patient> patients;
     private List<Staff> staff;
+
+    public Hospital(){
+        this.name = "";
+        this.patients = new LinkedList<>();
+        this.staff = new LinkedList<>();
+    }
 
     public Hospital(String name) {
         this.name = name;
@@ -22,10 +30,31 @@ public class Hospital {
         this.staff = new LinkedList<>();
     }
 
+
+    public Hospital(String name, LinkedList<Patient> patients, LinkedList<Staff> staff) {
+        this.name = name;
+        this.patients = patients;
+        this.staff = staff;
+    }
+
     public Hospital(Hospital hospital) {
         this.name = hospital.name;
         this.patients = new LinkedList<>(hospital.getPatients());
         this.staff = new LinkedList<>(hospital.getStaff());
+    }
+
+    public Hospital(Hospital hospital, LinkedList<Patient> patients, LinkedList<Staff> staff) {
+        this.name = hospital.name;
+        this.patients = patients;
+        this.staff = staff;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addPatient(Patient patient) {
@@ -48,66 +77,6 @@ public class Hospital {
     public void addStaff(String employer) throws ParseException {
         this.staff.add(new Staff(employer.split(": ")[0], employer.split(": ")[1]));
     }
-    // Format:
-    // Classes.Staff: staff\n
-    // Patients: patient: diagnosis, diagnosis, ... , diagnosis\n
-    public void importStaffFromFile(String fileName){
-        File file = new File(fileName);
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            String text;
-            while ((text = reader.readLine()) != null) {
-                addStaff(text);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-    public void importPatientFromFile(String fileName){
-        File file = new File(fileName);
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            String text;
-            while ((text = reader.readLine()) != null) {
-                addPatient(text);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-            }
-        }
-    }
-    public void exportStaffToFile(String fileName) throws IOException {
-        Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"));
-        for (ListIterator<Staff> i = getStaff().listIterator(); i.hasNext();) {
-            writer.write(i.next().toString());
-            writer.write(System.getProperty("line.separator"));
-        }
-        writer.close();
-    }
-    public void exportPatientsToFile(String fileName) throws IOException {
-        Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"));
-        for (ListIterator<Patient> i = getPatients().listIterator(); i.hasNext();) {
-            writer.write(i.next().toString());
-            writer.write(System.getProperty("line.separator"));
-        }
-        writer.close();
-    }
 
     //Get all patients in alphabetical order
     public Patient getPatient(int index){
@@ -115,13 +84,14 @@ public class Hospital {
         for (int i = 0; i < index && current.hasNext(); ++i, current.next());
         return current.next();
     }
+    @XmlElement
     public List<Patient> getPatients() {
         List<Patient> result = patients;
         //Lines to sort in alphabetical
         result.sort((o1, o2) -> Collator.getInstance().compare(o1.getName(), o2.getName()));
         return result;
     }
-    //Get patients by name and code of Classes.Diagnosis
+    //Get patients by name and code of Entities.Diagnosis
     public List<Patient> getPatientsByDiagnosis(Diagnosis Diagnosis, boolean nameComp, boolean cureComp) {
         List<Patient> result = new LinkedList<Patient>();
         for (Iterator<Patient> i = patients.iterator(); i.hasNext(); ) {
@@ -184,7 +154,7 @@ public class Hospital {
         }
         return result;
     }
-
+    @XmlElement
     public List<Staff> getStaff() {
         return staff;
     }
@@ -209,7 +179,9 @@ public class Hospital {
         LinkedList<Staff> result = new LinkedList<>();
         for ( ListIterator<Staff> i = getStaff().listIterator(); i.hasNext();){
             Staff current = i.next();
-            if (current.getName().equals(name));
+            if (current.getName().equals(name)){
+                result.add(current);
+            }
         }
         return result;
     }
@@ -223,7 +195,6 @@ public class Hospital {
     }
     //Remove some staff
     public void removeStaff(Staff fired) throws StaffPostException {
-        //would it work???
         if (fired.getPost() == Post.Administrator) throw new StaffPostException();
         else{
             staff.remove(fired);

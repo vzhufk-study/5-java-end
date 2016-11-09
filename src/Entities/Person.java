@@ -1,21 +1,29 @@
-package Classes;
+package Entities;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
-
 /**
  * Created by zhufy on 14.09.2016.
  */
 enum Gender{Male, Female}
 
+@XmlRootElement
 class Person {
     private String name;
     private GregorianCalendar dateOfBirth;
     private Gender sex;
     private String address;
+
+    Person() throws ParseException {
+        this.name = "";
+        this.dateOfBirth = Parsers.DataParser.parseToDateFromStringShort("01-01-2001");
+        this.sex = Gender.Male;
+        this.address = "";
+    }
 
     Person(String name, Date dateOfBirth, Gender sex, String address){
         this.name = name;
@@ -23,53 +31,25 @@ class Person {
         this.sex = sex;
         this.address = address;
     }
-
-    private static boolean isValidForConstructor(String text){
+    // TODO rename and javadoc
+    private static boolean isPerson(String text){
         Pattern personPattern = Pattern.compile("\\w*\\s\\w*,\\s\\d\\d-\\d\\d-\\d\\d\\d\\d,\\s(Male|Female),\\s.*");
         return personPattern.matcher(text).matches();
     }
 
     Person(String text) throws ParseException {
-        if (isValidForConstructor(text)){
+        if (isPerson(text)){
             String name = text.split(", ")[0];
             String date = text.split(", ")[1];
             String sex = text.split(", ")[2];
             String address = text.substring(text.indexOf(sex)+sex.length() + 2);
 
             this.name = name;
-            this.dateOfBirth = parseToDateFromStringShort(date);
+            this.dateOfBirth = Parsers.DataParser.parseToDateFromStringShort(date);
             this.sex = Gender.valueOf(sex);
             this.address = address;
         }
 
-    }
-
-    //TODO take parser to other class and package
-    public static GregorianCalendar parseToDateFromString(String text, String format) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        Date result = new Date();
-        try {
-            result = dateFormat.parse(text);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        GregorianCalendar cal = new GregorianCalendar();
-        cal.setTime(result);
-        return cal;
-    }
-
-    public static GregorianCalendar parseToDateFromStringShort(String text) throws ParseException {
-        return  parseToDateFromString(text, "dd-mm-yyyy");
-    }
-
-    public static String parseGregorianToString(GregorianCalendar date, String format){
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        return dateFormat.format(date.getTime());
-    }
-
-    public static String parseGregorianToString(GregorianCalendar date){
-        return parseGregorianToString(date, "dd-mm-yyyy");
     }
 
     @Override
@@ -86,6 +66,10 @@ class Person {
 
     }
 
+    public GregorianCalendar getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     @Override
     public int hashCode() {
         int result = getName().hashCode();
@@ -95,27 +79,50 @@ class Person {
         return result;
     }
 
+    @XmlElement
     public String getName() {
 
         return name;
     }
 
-    public GregorianCalendar getDateOfBirth() {
-        return dateOfBirth;
+    @XmlElement
+    public String getDateOfBirthString(){
+        return Parsers.DataParser.parseGregorianToString(dateOfBirth);
     }
 
+    @XmlElement
     public Gender getSex() {
         return sex;
     }
 
+    @XmlElement
     public String getAddress() {
         return address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDateOfBirth(GregorianCalendar dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setDateOfBirthString(String dateOfBirth) throws ParseException {
+        this.dateOfBirth = Parsers.DataParser.parseToDateFromStringShort(dateOfBirth);
+    }
+
+    public void setSex(Gender sex) {
+        this.sex = sex;
+    }
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return   name +
-                ", " + parseGregorianToString(dateOfBirth) +
+                ", " + Parsers.DataParser.parseGregorianToString(dateOfBirth) +
                 ", " + sex +
                 ", " + address;
     }

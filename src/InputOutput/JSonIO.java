@@ -1,6 +1,6 @@
 package InputOutput;
 
-import Classes.Hospital;
+import Entities.Hospital;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
@@ -12,9 +12,8 @@ import java.io.IOException;
  * 01.11.2016
  **/
 public class JSonIO{
-
-    public void toFile(Hospital hosp, String fileName) {
-        Hospital hospital = new Hospital(hosp);
+    public void toFile(Hospital hospital, String fileName) {
+        //Hospital hospital = new Hospital(hosp);
         ObjectMapper mapper = new ObjectMapper();
 
         File file = new File(fileName + ".json");
@@ -26,7 +25,7 @@ public class JSonIO{
         }
     }
 
-    public Classes.Hospital fromFile(String fileName) {
+    public Entities.Hospital fromFile(String fileName) {
 
         ObjectMapper mapper = new ObjectMapper();
         File file = new File(fileName + ".json");
@@ -37,7 +36,7 @@ public class JSonIO{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new Classes.Hospital(hospital);
+        return new Entities.Hospital(hospital);
     }
 
 }

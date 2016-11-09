@@ -1,2 +1,167 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<local xmlns="uri"/>
+<hospital>
+    <name>Texas Central Entities.Hospital</name>
+    <patients>
+        <address>Stone Str. 111/8</address>
+        <dateOfBirth>1991-01-13T00:11:00+02:00</dateOfBirth>
+        <dateOfBirthString>13-11-1991</dateOfBirthString>
+        <name>Anna Hinton</name>
+        <sex>Female</sex>
+    </patients>
+    <patients>
+        <address>Stone Str. 1/48</address>
+        <dateOfBirth>1999-01-10T00:10:00+02:00</dateOfBirth>
+        <dateOfBirthString>10-10-1999</dateOfBirthString>
+        <name>Inna Qerk</name>
+        <sex>Female</sex>
+    </patients>
+    <patients>
+        <address>Stone Str. 1/48</address>
+        <dateOfBirth>1999-01-10T00:10:00+02:00</dateOfBirth>
+        <dateOfBirthString>10-10-1999</dateOfBirthString>
+        <name>Tinna Quas</name>
+        <sex>Female</sex>
+    </patients>
+    <patients>
+        <address>Huston Str. 13/48</address>
+        <dateOfBirth>1978-01-12T00:07:00+02:00</dateOfBirth>
+        <dateOfBirthString>12-07-1978</dateOfBirthString>
+        <name>Tom Fray</name>
+        <sex>Male</sex>
+        <diagnosis>
+            <cure>Warm tea</cure>
+            <dateOfDiagnosis>2007-01-10T00:11:00+02:00</dateOfDiagnosis>
+            <dateOfDiagnosisString>10-11-2007</dateOfDiagnosisString>
+            <disease> HIV</disease>
+            <responsible>Tera Anna</responsible>
+        </diagnosis>
+        <diagnosis>
+            <cure>Warm tea</cure>
+            <dateOfDiagnosis>2008-01-10T00:11:00+02:00</dateOfDiagnosis>
+            <dateOfDiagnosisString>10-11-2008</dateOfDiagnosisString>
+            <disease> HIV</disease>
+            <responsible>Tera Anna</responsible>
+        </diagnosis>
+    </patients>
+    <staff>
+        <address>Industrial Str., 123/4</address>
+        <dateOfBirth>1996-01-21T00:11:00+02:00</dateOfBirth>
+        <dateOfBirthString>21-11-1996</dateOfBirthString>
+        <name>Con Roman</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-22T00:10:00+02:00</dateOfHiring>
+        <dateOfHiringString>22-10-2016</dateOfHiringString>
+        <post>Mental_Health_Worker</post>
+        <salary>250.0</salary>
+    </staff>
+    <staff>
+        <address>Kingdom Str., 1111/44</address>
+        <dateOfBirth>1967-01-14T00:12:00+02:00</dateOfBirth>
+        <dateOfBirthString>14-12-1967</dateOfBirthString>
+        <name>Morgan Freeman</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-20T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>20-09-2016</dateOfHiringString>
+        <post>Cleaner</post>
+        <salary>110.0</salary>
+    </staff>
+    <staff>
+        <address>Det Str. 1/44</address>
+        <dateOfBirth>1994-01-11T00:02:00+02:00</dateOfBirth>
+        <dateOfBirthString>11-02-1994</dateOfBirthString>
+        <name>Torrent Roman</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-22T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>22-09-2016</dateOfHiringString>
+        <post>Dietitian</post>
+        <salary>260.0</salary>
+    </staff>
+    <staff>
+        <address>Kingdom Str., 151/44</address>
+        <dateOfBirth>1967-01-14T00:12:00+02:00</dateOfBirth>
+        <dateOfBirthString>14-12-1967</dateOfBirthString>
+        <name>Morgan Freeman</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-20T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>20-09-2016</dateOfHiringString>
+        <post>Cleaner</post>
+        <salary>110.0</salary>
+    </staff>
+    <staff>
+        <address>Det Str. 1/44</address>
+        <dateOfBirth>1994-01-11T00:02:00+02:00</dateOfBirth>
+        <dateOfBirthString>11-02-1994</dateOfBirthString>
+        <name>Torrent Roman</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-22T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>22-09-2016</dateOfHiringString>
+        <post>Dietitian</post>
+        <salary>260.0</salary>
+    </staff>
+    <staff>
+        <address>Finger Str. 55/1</address>
+        <dateOfBirth>1989-01-05T00:07:00+02:00</dateOfBirth>
+        <dateOfBirthString>05-07-1989</dateOfBirthString>
+        <name>Kenny Harry</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-20T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>20-09-2016</dateOfHiringString>
+        <post>Administrator</post>
+        <salary>424.0</salary>
+    </staff>
+    <staff>
+        <address>Independence Str. 31/34</address>
+        <dateOfBirth>1979-01-23T00:07:00+02:00</dateOfBirth>
+        <dateOfBirthString>23-07-1979</dateOfBirthString>
+        <name>Jo Rita</name>
+        <sex>Female</sex>
+        <dateOfHiring>2016-01-21T00:11:00+02:00</dateOfHiring>
+        <dateOfHiringString>21-11-2016</dateOfHiringString>
+        <post>Medical_Technician</post>
+        <salary>115.0</salary>
+    </staff>
+    <staff>
+        <address>Industrial Str. 13/4</address>
+        <dateOfBirth>1991-01-14T00:02:00+02:00</dateOfBirth>
+        <dateOfBirthString>14-02-1991</dateOfBirthString>
+        <name>Pulse Ken</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-21T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>21-09-2016</dateOfHiringString>
+        <post>Physician</post>
+        <salary>300.0</salary>
+    </staff>
+    <staff>
+        <address>Kingdom Str. 1111/44</address>
+        <dateOfBirth>1987-01-16T00:07:00+02:00</dateOfBirth>
+        <dateOfBirthString>16-07-1987</dateOfBirthString>
+        <name>Tera Anna</name>
+        <sex>Female</sex>
+        <dateOfHiring>2016-01-20T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>20-09-2016</dateOfHiringString>
+        <post>Nurse</post>
+        <salary>177.0</salary>
+    </staff>
+    <staff>
+        <address>Destruct Str. 1/44</address>
+        <dateOfBirth>1997-01-01T00:09:00+02:00</dateOfBirth>
+        <dateOfBirthString>01-09-1997</dateOfBirthString>
+        <name>Olden Roman</name>
+        <sex>Male</sex>
+        <dateOfHiring>2016-01-20T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>20-09-2016</dateOfHiringString>
+        <post>Dietitian</post>
+        <salary>221.0</salary>
+    </staff>
+    <staff>
+        <address>Finger Str. 15/11</address>
+        <dateOfBirth>1989-01-01T00:01:00+02:00</dateOfBirth>
+        <dateOfBirthString>01-01-1989</dateOfBirthString>
+        <name>Kep Molly</name>
+        <sex>Female</sex>
+        <dateOfHiring>2016-01-20T00:09:00+02:00</dateOfHiring>
+        <dateOfHiringString>20-09-2016</dateOfHiringString>
+        <post>Administrator</post>
+        <salary>300.0</salary>
+    </staff>
+</hospital>

@@ -7,28 +7,38 @@ package InputOutput;
  * 01.11.2016
  **/
 
-import Classes.Hospital;
+import Entities.Hospital;
 
-import javax.xml.bind.*;
-import javax.xml.namespace.QName;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class JAXBIO{
 
-    public void toFile(Classes.Hospital h, String fileName) {
+    public void toFile(Entities.Hospital h, String fileName) {
         try {
 
             Hospital hospital = new Hospital(h);
             fileName += ".xml";
 
             File file = new File(fileName);
+/*
+            JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(c, sw);
+            String xmlString = sw.toString();
+*/
             JAXBContext jaxbContext = JAXBContext.newInstance(Hospital.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(new JAXBElement<Hospital>(new QName("uri","local"), Hospital.class, h), file);
+            jaxbMarshaller.marshal(h, file);
             //jaxbMarshaller.marshal(hospital, file);
             //jaxbMarshaller.marshal(Hospital, System.out);
 
@@ -37,14 +47,14 @@ public class JAXBIO{
         }
     }
 
-    public Classes.Hospital fromFile(String fileName) {
+    public Entities.Hospital fromFile(String fileName) {
         try {
             File file = new File(fileName + ".xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Hospital.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Hospital fromFile = (Hospital) jaxbUnmarshaller.unmarshal(file);
-            Classes.Hospital Hospital = new Classes.Hospital(fromFile);
+            Entities.Hospital Hospital = new Entities.Hospital(fromFile);
             return Hospital;
 
         } catch (JAXBException e) {

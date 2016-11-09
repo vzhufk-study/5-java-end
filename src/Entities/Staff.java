@@ -1,5 +1,7 @@
-package Classes;
+package Entities;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -12,12 +14,20 @@ enum Post{
 /**
  * Created by zhufy on 14.09.2016.
  */
+@XmlRootElement
 public class Staff extends  Person {
 
     private float salary;
     private GregorianCalendar dateOfHiring;
     //rename or not?
     private Post post;
+
+    Staff() throws ParseException {
+        super();
+        this.salary = 0;
+        this.dateOfHiring = Parsers.DataParser.parseToDateFromStringShort("01-01-2001");
+        this.post = Post.Cleaner;
+    }
 
     Staff(String name, Date dateOfBirth, Gender sex, String address, float salary, Date dateOfHiring, Post post) {
         super(name, dateOfBirth, sex, address);
@@ -35,7 +45,7 @@ public class Staff extends  Person {
         super(personText);
         if (isValidForConstructor(staffText)){
             this.salary = Float.parseFloat(staffText.split(", ")[0]);
-            this.dateOfHiring = Person.parseToDateFromStringShort(staffText.split(", ")[1]);
+            this.dateOfHiring = Parsers.DataParser.parseToDateFromStringShort(staffText.split(", ")[1]);
             this.post = Post.valueOf(staffText.split(", ")[2]);
         }
     }
@@ -45,10 +55,28 @@ public class Staff extends  Person {
         String staffText = text.split(": ")[1];
         if (isValidForConstructor(staffText)){
             this.salary = Float.parseFloat(staffText.split(", ")[0]);
-            this.dateOfHiring = Person.parseToDateFromStringShort(staffText.split(", ")[1]);
+            this.dateOfHiring = Parsers.DataParser.parseToDateFromStringShort(staffText.split(", ")[1]);
             this.post = Post.valueOf(staffText.split(", ")[2]);
         }    }
 
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
+    public void setDateOfHiring(GregorianCalendar dateOfHiring) {
+        this.dateOfHiring = dateOfHiring;
+    }
+
+
+    public void setDateOfHiringString(String dateOfHiring) throws ParseException {
+        this.dateOfHiring = Parsers.DataParser.parseToDateFromStringShort(dateOfHiring);
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    @XmlElement
     public float getSalary() {
         return salary;
     }
@@ -56,7 +84,11 @@ public class Staff extends  Person {
     public GregorianCalendar getDateOfHiring() {
         return dateOfHiring;
     }
-
+    @XmlElement
+    public String getDateOfHiringString() throws ParseException {
+        return Parsers.DataParser.parseGregorianToString(this.dateOfHiring);
+    }
+    @XmlElement
     public Post getPost() {
         return post;
     }
@@ -87,7 +119,7 @@ public class Staff extends  Person {
     @Override
     public String toString() {
         return  super.toString() + ": " + salary +
-                ", " + parseGregorianToString(dateOfHiring) +
+                ", " + Parsers.DataParser.parseGregorianToString(dateOfHiring) +
                 ", " + post;
     }
 }
